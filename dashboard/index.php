@@ -209,6 +209,20 @@ include_once '../includes/header.php';
                                     document.querySelectorAll('.add-crop').forEach(button => {
                                         button.addEventListener('click', function() {
                                             const cropName = this.getAttribute('data-crop');
+                                            const cropCard = this.closest('.glass');
+
+                                            // Get crop details from the card
+                                            const cropSuitability = cropCard.querySelector('p.text-sm').textContent;
+                                            const cropGrowingPeriod = cropCard.querySelector('span.text-xs').textContent;
+
+                                            // Find the crop object with all details
+                                            const cropData = data.data.find(c => c.name === cropName);
+
+                                            // Create detailed notes
+                                            const detailedNotes = `Suitability: ${cropData.suitability}\n\n` +
+                                                `Growing Period: ${cropData.growing_period}\n\n` +
+                                                `Care Instructions: ${cropData.care}\n\n` +
+                                                `Potential Challenges: ${cropData.challenges}`;
 
                                             fetch('../api/crops.php', {
                                                 method: 'POST',
@@ -219,7 +233,7 @@ include_once '../includes/header.php';
                                                     action: 'add_crop',
                                                     crop_name: cropName,
                                                     planting_date: new Date().toISOString().split('T')[0],
-                                                    notes: 'Added from recommendations'
+                                                    notes: detailedNotes
                                                 })
                                             })
                                             .then(response => response.json())

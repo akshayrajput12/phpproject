@@ -45,6 +45,45 @@ $isLoggedIn = isset($_SESSION['user_id']);
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?php echo $base_url; ?>/assets/css/animations.css">
+
+    <!-- Weather Animations CSS -->
+    <style>
+        /* Weather animation container */
+        .weather-animation-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Typewriter cursor */
+        .typewriter-cursor {
+            display: inline-block;
+            width: 2px;
+            height: 1em;
+            background-color: currentColor;
+            margin-left: 2px;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Text gradient effect */
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            display: inline-block;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+    </style>
     <style>
         /* Glass morphism effect */
         .glass {
@@ -127,30 +166,30 @@ $isLoggedIn = isset($_SESSION['user_id']);
             <div class="hidden w-full md:block md:w-auto" id="navbar-default">
                 <ul class="flex flex-col p-4 md:p-0 mt-4 md:flex-row md:space-x-8 md:mt-0 md:border-0">
                     <li>
-                        <a href="<?php echo $base_url; ?>" class="block py-2 pl-3 pr-4 hover:text-accent rounded md:p-0" aria-current="page">Home</a>
+                        <a href="<?php echo $base_url; ?>" class="block py-2 pl-3 pr-4 hover:text-accent rounded md:p-0" aria-current="page"><span data-translate="nav-home">Home</span></a>
                     </li>
                     <li>
-                        <a href="<?php echo $base_url; ?>/pages/weather.php" class="block py-2 pl-3 pr-4 hover:text-accent rounded md:p-0">Weather</a>
+                        <a href="<?php echo $base_url; ?>/pages/weather.php" class="block py-2 pl-3 pr-4 hover:text-accent rounded md:p-0"><span data-translate="nav-weather">Weather</span></a>
                     </li>
                     <li>
-                        <a href="<?php echo $base_url; ?>/pages/about.php" class="block py-2 pl-3 pr-4 hover:text-accent rounded md:p-0">About</a>
+                        <a href="<?php echo $base_url; ?>/pages/about.php" class="block py-2 pl-3 pr-4 hover:text-accent rounded md:p-0"><span data-translate="nav-about">About</span></a>
                     </li>
                     <li>
-                        <a href="<?php echo $base_url; ?>/pages/contact.php" class="block py-2 pl-3 pr-4 hover:text-accent rounded md:p-0">Contact</a>
+                        <a href="<?php echo $base_url; ?>/pages/contact.php" class="block py-2 pl-3 pr-4 hover:text-accent rounded md:p-0"><span data-translate="nav-contact">Contact</span></a>
                     </li>
                     <?php if ($isLoggedIn): ?>
                     <li>
-                        <a href="<?php echo $base_url; ?>/dashboard/index.php" class="block py-2 pl-3 pr-4 hover:text-accent rounded md:p-0">Dashboard</a>
+                        <a href="<?php echo $base_url; ?>/dashboard/index.php" class="block py-2 pl-3 pr-4 hover:text-accent rounded md:p-0"><span data-translate="nav-dashboard">Dashboard</span></a>
                     </li>
                     <li>
-                        <a href="<?php echo $base_url; ?>/auth/logout.php" class="block py-2 pl-3 pr-4 text-red-400 hover:text-red-300 rounded md:p-0">Logout</a>
+                        <a href="<?php echo $base_url; ?>/auth/logout.php" class="block py-2 pl-3 pr-4 text-red-400 hover:text-red-300 rounded md:p-0"><span data-translate="nav-logout">Logout</span></a>
                     </li>
                     <?php else: ?>
                     <li>
-                        <a href="<?php echo $base_url; ?>/auth/login.php" class="block py-2 pl-3 pr-4 hover:text-accent rounded md:p-0">Login</a>
+                        <a href="<?php echo $base_url; ?>/auth/login.php" class="block py-2 pl-3 pr-4 hover:text-accent rounded md:p-0"><span data-translate="nav-login">Login</span></a>
                     </li>
                     <li>
-                        <a href="<?php echo $base_url; ?>/auth/register.php" class="block py-2 pl-3 pr-4 bg-accent hover:bg-purple-500 rounded-full px-4 py-1 transition-colors">Register</a>
+                        <a href="<?php echo $base_url; ?>/auth/register.php" class="block py-2 pl-3 pr-4 bg-accent hover:bg-purple-500 rounded-full px-4 py-1 transition-colors"><span data-translate="nav-register">Register</span></a>
                     </li>
                     <?php endif; ?>
                 </ul>

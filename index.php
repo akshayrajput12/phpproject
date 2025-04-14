@@ -19,28 +19,30 @@ include_once 'includes/header.php';
         <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" alt="Farm field at sunset" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-gradient-to-r from-dark/80 to-dark/50"></div>
     </div>
-    
+
     <!-- Hero Content -->
     <div class="container mx-auto px-4 relative z-10 text-center fade-in">
-        <h1 class="text-4xl md:text-6xl font-bold mb-6">Crop Guidance and Farmer's Friend</h1>
-        <p class="text-xl md:text-2xl opacity-90 mb-8 max-w-3xl mx-auto">Empowering farmers with intelligent crop recommendations, weather insights, and pest warnings.</p>
-        
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 text-white">
+            <span class="typewriter text-gradient bg-gradient-to-r from-white via-accent to-primary" data-text="Crop Guidance and Farmer's Friend" data-speed="70" data-translate="hero-title">Crop Guidance and Farmer's Friend</span>
+        </h1>
+        <p class="text-xl md:text-2xl mb-8 max-w-3xl mx-auto fade-in-up text-white/90" id="hero-subtitle" style="opacity: 0; transform: translateY(20px);" data-translate="hero-subtitle">Empowering farmers with intelligent crop recommendations, weather insights, and pest warnings.</p>
+
         <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <?php if ($isLoggedIn): ?>
-                <a href="dashboard/index.php" class="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white font-bold rounded-lg text-lg px-8 py-4 transition-all duration-300 hover-scale">
-                    Go to Dashboard
+                <a href="dashboard/index.php" class="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white font-bold rounded-lg text-lg px-8 py-4 transition-all duration-300 hover-scale magnetic-effect">
+                    <span data-translate="go-to-dashboard">Go to Dashboard</span>
                 </a>
             <?php else: ?>
-                <a href="auth/register.php" class="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white font-bold rounded-lg text-lg px-8 py-4 transition-all duration-300 hover-scale">
-                    Get Started
+                <a href="auth/register.php" class="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white font-bold rounded-lg text-lg px-8 py-4 transition-all duration-300 hover-scale magnetic-effect">
+                    <span data-translate="get-started">Get Started</span>
                 </a>
-                <a href="auth/login.php" class="bg-white/10 hover:bg-white/20 text-white font-bold rounded-lg text-lg px-8 py-4 transition-all duration-300 hover-scale">
-                    Login
+                <a href="auth/login.php" class="bg-white/10 hover:bg-white/20 text-white font-bold rounded-lg text-lg px-8 py-4 transition-all duration-300 hover-scale magnetic-effect">
+                    <span data-translate="login">Login</span>
                 </a>
             <?php endif; ?>
         </div>
     </div>
-    
+
     <!-- Animated Scroll Down Indicator -->
     <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
         <a href="#features" class="text-white/80 hover:text-white animate-bounce">
@@ -51,39 +53,39 @@ include_once 'includes/header.php';
 
 <!-- Features Section -->
 <div id="features" class="container mx-auto px-4 py-12">
-    <div class="text-center mb-12 fade-in">
-        <h2 class="text-3xl font-bold mb-4">Why Choose Farmer's Friend?</h2>
-        <p class="text-xl opacity-75 max-w-3xl mx-auto">Our platform combines weather data, AI-powered recommendations, and agricultural expertise to help you make informed decisions.</p>
+    <div class="text-center mb-12 animate-on-scroll" data-animation="fade-up">
+        <h2 class="text-3xl font-bold mb-4" data-translate="why-choose">Why Choose Farmer's Friend?</h2>
+        <p class="text-xl opacity-75 max-w-3xl mx-auto" data-translate="platform-description">Our platform combines weather data, AI-powered recommendations, and agricultural expertise to help you make informed decisions.</p>
     </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-in">
-        <div class="glass p-6 rounded-xl hover-scale">
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="glass glass-enhanced p-6 rounded-xl tilt-effect animate-on-scroll" data-animation="fade-up" data-delay="100">
             <div class="flex flex-col items-center text-center">
-                <div class="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mb-4">
+                <div class="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mb-4 pulse">
                     <i class="fas fa-cloud-sun-rain text-accent text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-semibold mb-2">Real-time Weather Updates</h3>
-                <p class="opacity-75">Access accurate weather forecasts and receive alerts for extreme conditions that might affect your crops.</p>
+                <h3 class="text-xl font-semibold mb-2" data-translate="weather-updates">Real-time Weather Updates</h3>
+                <p class="opacity-75" data-translate="weather-description">Access accurate weather forecasts and receive alerts for extreme conditions that might affect your crops.</p>
             </div>
         </div>
-        
-        <div class="glass p-6 rounded-xl hover-scale">
+
+        <div class="glass glass-enhanced p-6 rounded-xl tilt-effect animate-on-scroll" data-animation="fade-up" data-delay="200">
             <div class="flex flex-col items-center text-center">
-                <div class="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mb-4">
+                <div class="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mb-4 pulse">
                     <i class="fas fa-seedling text-accent text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-semibold mb-2">AI-Powered Crop Recommendations</h3>
-                <p class="opacity-75">Get personalized crop suggestions based on your location, soil type, and current weather conditions.</p>
+                <h3 class="text-xl font-semibold mb-2" data-translate="crop-recommendations">AI-Powered Crop Recommendations</h3>
+                <p class="opacity-75" data-translate="crop-description">Get personalized crop suggestions based on your location, soil type, and current weather conditions.</p>
             </div>
         </div>
-        
-        <div class="glass p-6 rounded-xl hover-scale">
+
+        <div class="glass glass-enhanced p-6 rounded-xl tilt-effect animate-on-scroll" data-animation="fade-up" data-delay="300">
             <div class="flex flex-col items-center text-center">
-                <div class="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mb-4">
+                <div class="w-20 h-20 rounded-full bg-accent/20 flex items-center justify-center mb-4 pulse">
                     <i class="fas fa-bug text-accent text-3xl"></i>
                 </div>
-                <h3 class="text-xl font-semibold mb-2">Pest & Disease Warnings</h3>
-                <p class="opacity-75">Stay ahead of potential threats with timely warnings and prevention strategies for common pests and diseases.</p>
+                <h3 class="text-xl font-semibold mb-2" data-translate="pest-warnings">Pest & Disease Warnings</h3>
+                <p class="opacity-75" data-translate="pest-description">Stay ahead of potential threats with timely warnings and prevention strategies for common pests and diseases.</p>
             </div>
         </div>
     </div>
@@ -96,7 +98,7 @@ include_once 'includes/header.php';
             <h2 class="text-3xl font-bold mb-4">How It Works</h2>
             <p class="text-xl opacity-75 max-w-3xl mx-auto">Our simple process helps you get the most out of your farming experience.</p>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 fade-in">
             <div class="glass p-6 rounded-xl hover-scale">
                 <div class="flex flex-col items-center text-center">
@@ -105,7 +107,7 @@ include_once 'includes/header.php';
                     <p class="opacity-75">Sign up and set your location and soil type to get personalized recommendations.</p>
                 </div>
             </div>
-            
+
             <div class="glass p-6 rounded-xl hover-scale">
                 <div class="flex flex-col items-center text-center">
                     <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-xl font-bold mb-4">2</div>
@@ -113,7 +115,7 @@ include_once 'includes/header.php';
                     <p class="opacity-75">Access real-time weather data and forecasts specific to your location.</p>
                 </div>
             </div>
-            
+
             <div class="glass p-6 rounded-xl hover-scale">
                 <div class="flex flex-col items-center text-center">
                     <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-xl font-bold mb-4">3</div>
@@ -121,7 +123,7 @@ include_once 'includes/header.php';
                     <p class="opacity-75">Receive AI-generated crop suggestions based on your specific conditions.</p>
                 </div>
             </div>
-            
+
             <div class="glass p-6 rounded-xl hover-scale">
                 <div class="flex flex-col items-center text-center">
                     <div class="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-xl font-bold mb-4">4</div>
@@ -151,7 +153,7 @@ include_once 'includes/header.php';
             </div>
         </div>
     </div>
-    
+
     <!-- Crop Recommendations Feature -->
     <div class="flex flex-col md:flex-row-reverse items-center mb-16 fade-in">
         <div class="md:w-1/2 mb-8 md:mb-0 md:pl-8">
@@ -174,7 +176,7 @@ include_once 'includes/header.php';
             </div>
         </div>
     </div>
-    
+
     <!-- Pest Warnings Feature -->
     <div class="flex flex-col md:flex-row items-center fade-in">
         <div class="md:w-1/2 mb-8 md:mb-0 md:pr-8">
@@ -206,7 +208,7 @@ include_once 'includes/header.php';
             <h2 class="text-3xl font-bold mb-4">What Farmers Say</h2>
             <p class="text-xl opacity-75 max-w-3xl mx-auto">Hear from farmers who have transformed their practices with Farmer's Friend.</p>
         </div>
-        
+
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 fade-in">
             <div class="glass p-6 rounded-xl hover-scale">
                 <div class="flex flex-col">
@@ -227,7 +229,7 @@ include_once 'includes/header.php';
                     </div>
                 </div>
             </div>
-            
+
             <div class="glass p-6 rounded-xl hover-scale">
                 <div class="flex flex-col">
                     <div class="flex items-center mb-4">
@@ -247,7 +249,7 @@ include_once 'includes/header.php';
                     </div>
                 </div>
             </div>
-            
+
             <div class="glass p-6 rounded-xl hover-scale">
                 <div class="flex flex-col">
                     <div class="flex items-center mb-4">
@@ -276,7 +278,7 @@ include_once 'includes/header.php';
     <div class="glass p-8 rounded-xl text-center max-w-4xl mx-auto fade-in">
         <h2 class="text-3xl font-bold mb-4">Ready to Transform Your Farming?</h2>
         <p class="text-xl opacity-90 mb-8 max-w-2xl mx-auto">Join thousands of farmers who are using Farmer's Friend to make data-driven decisions and improve their crop yields.</p>
-        
+
         <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
             <?php if ($isLoggedIn): ?>
                 <a href="dashboard/index.php" class="bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white font-bold rounded-lg text-lg px-8 py-4 transition-all duration-300 hover-scale">
@@ -297,14 +299,63 @@ include_once 'includes/header.php';
 <!-- JavaScript for Animations -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
+        // Initialize typewriter effect
+        const typewriterElement = document.querySelector('.typewriter');
+        if (typewriterElement) {
+            // Set data-next-element attribute to show subtitle after typing
+            typewriterElement.setAttribute('data-next-element', '#hero-subtitle');
+        }
+
+        // Add weather animation to hero section
+        const heroSection = document.querySelector('.min-h-\\[80vh\\]');
+        if (heroSection) {
+            const weatherContainer = document.createElement('div');
+            weatherContainer.className = 'weather-animation-container';
+            heroSection.appendChild(weatherContainer);
+
+            // Add some clouds
+            for (let i = 0; i < 5; i++) {
+                const cloud = document.createElement('div');
+                cloud.className = 'cloud';
+                cloud.style.top = `${10 + Math.random() * 40}%`;
+                cloud.style.left = `${Math.random() * 100}%`;
+                cloud.style.animationDuration = `${20 + Math.random() * 30}s`;
+                cloud.style.animationDelay = `${Math.random() * 10}s`;
+                cloud.style.opacity = 0.5 + Math.random() * 0.5;
+                cloud.style.transform = `scale(${0.5 + Math.random() * 0.5})`;
+                weatherContainer.appendChild(cloud);
+            }
+        }
+
+        // Make feature cards tilt on hover
+        document.querySelectorAll('.tilt-effect').forEach(card => {
+            card.addEventListener('mousemove', function(e) {
+                const rect = this.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+
+                const deltaX = (x - centerX) / centerX;
+                const deltaY = (y - centerY) / centerY;
+
+                this.style.transform = `perspective(1000px) rotateX(${-deltaY * 5}deg) rotateY(${deltaX * 5}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+            });
+        });
+
         // Smooth scroll for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
+
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
-                
+
                 if (targetElement) {
                     window.scrollTo({
                         top: targetElement.offsetTop - 80, // Adjust for header height
