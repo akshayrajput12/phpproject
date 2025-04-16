@@ -269,8 +269,17 @@ function initChatbot() {
      */
     function sendToGemini(message, language) {
         // Construct the API URL with absolute path
-        const baseUrl = window.location.pathname.includes('/farmer/') ? '/farmer' : '';
+        // Get the base URL by finding the path to the root directory
+        let baseUrl = '';
+        const pathSegments = window.location.pathname.split('/');
+        const farmerIndex = pathSegments.indexOf('farmer');
+
+        if (farmerIndex !== -1) {
+            baseUrl = '/' + pathSegments.slice(1, farmerIndex + 1).join('/');
+        }
+
         const apiUrl = baseUrl + '/api/chatbot.php';
+        console.log('Chatbot API URL:', apiUrl);
 
         // Prepare the data
         const data = {

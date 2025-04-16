@@ -24,7 +24,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </div>
         </div>
     </div>
-    
+
     <nav class="p-4">
         <ul class="space-y-2">
             <li>
@@ -51,6 +51,15 @@ $current_page = basename($_SERVER['PHP_SELF']);
                     <span>Weather</span>
                 </a>
             </li>
+            <?php if (isset($_SESSION['is_admin']) && $_SESSION['is_admin'] == 1): ?>
+            <li>
+                <a href="<?php echo strpos($current_page, 'admin') !== false ? '../select.php' : 'admin/index.php'; ?>" class="flex items-center p-2 rounded-lg hover-scale transition-all duration-300 hover:bg-white/5">
+                    <i class="fas fa-user-shield w-6 text-accent"></i>
+                    <span>Admin Dashboard</span>
+                </a>
+            </li>
+            <?php endif; ?>
+
             <li class="border-t border-white/10 pt-2 mt-4">
                 <a href="../auth/logout.php" class="flex items-center p-2 rounded-lg text-red-400 hover:bg-red-500/20 hover-scale transition-all duration-300">
                     <i class="fas fa-sign-out-alt w-6"></i>
@@ -59,7 +68,7 @@ $current_page = basename($_SERVER['PHP_SELF']);
             </li>
         </ul>
     </nav>
-    
+
     <div class="p-4 mt-auto border-t border-white/10">
         <div class="glass rounded-lg p-3 bg-accent/10">
             <h3 class="font-medium text-sm">Weather Alert</h3>
