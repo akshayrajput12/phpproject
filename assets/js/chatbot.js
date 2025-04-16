@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (!document.getElementById('chatbot-container')) {
         createChatbotUI();
     }
-    
+
     // Initialize chatbot
     initChatbot();
 });
@@ -21,18 +21,18 @@ function createChatbotUI() {
     const chatbotContainer = document.createElement('div');
     chatbotContainer.id = 'chatbot-container';
     chatbotContainer.className = 'fixed bottom-5 right-5 z-50';
-    
+
     // Create chatbot button
     const chatbotButton = document.createElement('button');
     chatbotButton.id = 'chatbot-button';
     chatbotButton.className = 'bg-accent hover:bg-purple-600 text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg transition-all duration-300 hover-scale';
     chatbotButton.innerHTML = '<i class="fas fa-comment-dots text-xl"></i>';
-    
+
     // Create chatbot panel
     const chatbotPanel = document.createElement('div');
     chatbotPanel.id = 'chatbot-panel';
     chatbotPanel.className = 'glass absolute bottom-16 right-0 w-80 md:w-96 rounded-lg shadow-xl overflow-hidden transition-all duration-300 transform scale-0 origin-bottom-right';
-    
+
     // Create chatbot header
     const chatbotHeader = document.createElement('div');
     chatbotHeader.className = 'bg-gradient-to-r from-primary to-accent p-4 text-white flex justify-between items-center';
@@ -52,12 +52,12 @@ function createChatbotUI() {
             </button>
         </div>
     `;
-    
+
     // Create chatbot messages container
     const chatbotMessages = document.createElement('div');
     chatbotMessages.id = 'chatbot-messages';
     chatbotMessages.className = 'h-80 overflow-y-auto p-4 bg-white/5';
-    
+
     // Add welcome message
     chatbotMessages.innerHTML = `
         <div class="flex mb-4">
@@ -69,7 +69,7 @@ function createChatbotUI() {
             </div>
         </div>
     `;
-    
+
     // Create chatbot input area
     const chatbotInput = document.createElement('div');
     chatbotInput.className = 'p-3 border-t border-white/10 bg-white/5 flex items-center';
@@ -79,15 +79,15 @@ function createChatbotUI() {
             <i class="fas fa-paper-plane"></i>
         </button>
     `;
-    
+
     // Assemble the chatbot
     chatbotPanel.appendChild(chatbotHeader);
     chatbotPanel.appendChild(chatbotMessages);
     chatbotPanel.appendChild(chatbotInput);
-    
+
     chatbotContainer.appendChild(chatbotButton);
     chatbotContainer.appendChild(chatbotPanel);
-    
+
     // Add to the document
     document.body.appendChild(chatbotContainer);
 }
@@ -103,7 +103,7 @@ function initChatbot() {
     const chatbotInput = document.getElementById('chatbot-input-field');
     const chatbotMessages = document.getElementById('chatbot-messages');
     const chatbotLanguage = document.getElementById('chatbot-language');
-    
+
     // Toggle chatbot panel
     chatbotButton.addEventListener('click', function() {
         chatbotPanel.classList.toggle('scale-0');
@@ -111,61 +111,61 @@ function initChatbot() {
             chatbotInput.focus();
         }
     });
-    
+
     // Close chatbot panel
     chatbotClose.addEventListener('click', function() {
         chatbotPanel.classList.add('scale-0');
     });
-    
+
     // Send message on button click
     chatbotSend.addEventListener('click', function() {
         sendMessage();
     });
-    
+
     // Send message on Enter key
     chatbotInput.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             sendMessage();
         }
     });
-    
+
     // Change language
     chatbotLanguage.addEventListener('change', function() {
         const selectedLanguage = this.value;
         // Update the welcome message language
         updateChatbotLanguage(selectedLanguage);
     });
-    
+
     /**
      * Send user message to chatbot
      */
     function sendMessage() {
         const message = chatbotInput.value.trim();
         if (message === '') return;
-        
+
         // Add user message to chat
         addMessageToChat('user', message);
-        
+
         // Clear input field
         chatbotInput.value = '';
-        
+
         // Show typing indicator
         showTypingIndicator();
-        
+
         // Get selected language
         const selectedLanguage = chatbotLanguage.value;
-        
+
         // Send to Gemini API
         sendToGemini(message, selectedLanguage);
     }
-    
+
     /**
      * Add a message to the chat
      */
     function addMessageToChat(sender, message) {
         const messageElement = document.createElement('div');
         messageElement.className = 'flex mb-4 ' + (sender === 'user' ? 'justify-end' : '');
-        
+
         if (sender === 'user') {
             messageElement.innerHTML = `
                 <div class="glass p-3 rounded-lg max-w-[80%] bg-accent/10">
@@ -185,13 +185,13 @@ function initChatbot() {
                 </div>
             `;
         }
-        
+
         chatbotMessages.appendChild(messageElement);
-        
+
         // Scroll to bottom
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
-    
+
     /**
      * Show typing indicator
      */
@@ -211,9 +211,9 @@ function initChatbot() {
                 </div>
             </div>
         `;
-        
+
         chatbotMessages.appendChild(typingElement);
-        
+
         // Add CSS for typing dots
         if (!document.getElementById('typing-dots-style')) {
             const style = document.createElement('style');
@@ -249,11 +249,11 @@ function initChatbot() {
             `;
             document.head.appendChild(style);
         }
-        
+
         // Scroll to bottom
         chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
-    
+
     /**
      * Remove typing indicator
      */
@@ -263,20 +263,21 @@ function initChatbot() {
             typingIndicator.remove();
         }
     }
-    
+
     /**
      * Send message to Gemini API
      */
     function sendToGemini(message, language) {
-        // Construct the API URL
-        const apiUrl = 'api/chatbot.php';
-        
+        // Construct the API URL with absolute path
+        const baseUrl = window.location.pathname.includes('/farmer/') ? '/farmer' : '';
+        const apiUrl = baseUrl + '/api/chatbot.php';
+
         // Prepare the data
         const data = {
             message: message,
             language: language
         };
-        
+
         // Send the request
         fetch(apiUrl, {
             method: 'POST',
@@ -289,7 +290,7 @@ function initChatbot() {
         .then(data => {
             // Remove typing indicator
             removeTypingIndicator();
-            
+
             if (data.status === 'success') {
                 // Add bot response to chat
                 addMessageToChat('bot', data.response);
@@ -301,13 +302,13 @@ function initChatbot() {
         .catch(error => {
             // Remove typing indicator
             removeTypingIndicator();
-            
+
             // Add error message
             addMessageToChat('bot', 'Sorry, I encountered an error. Please try again later.');
             console.error('Error:', error);
         });
     }
-    
+
     /**
      * Update chatbot language
      */
@@ -323,22 +324,22 @@ function initChatbot() {
             default:
                 chatbotInput.placeholder = 'Type your question...';
         }
-        
+
         // Send a language change notification to the chatbot
         const welcomeMessages = {
             'en': "I've switched to English. How can I help you?",
             'hi': "मैंने हिंदी में स्विच किया है। मैं आपकी कैसे मदद कर सकता हूँ?",
             'pa': "ਮੈਂ ਪੰਜਾਬੀ ਵਿੱਚ ਬਦਲ ਗਿਆ ਹਾਂ। ਮੈਂ ਤੁਹਾਡੀ ਕਿਵੇਂ ਮਦਦ ਕਰ ਸਕਦਾ ਹਾਂ?"
         };
-        
+
         addMessageToChat('bot', welcomeMessages[language]);
     }
-    
+
     /**
      * Escape HTML to prevent XSS
      */
     function escapeHTML(str) {
-        return str.replace(/[&<>'"]/g, 
+        return str.replace(/[&<>'"]/g,
             tag => ({
                 '&': '&amp;',
                 '<': '&lt;',

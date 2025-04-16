@@ -237,14 +237,7 @@ include_once '../includes/header.php';
                 <p class="text-sm opacity-75">Your account was created on <?php echo date('F j, Y', strtotime($user['created_at'])); ?></p>
             </div>
 
-            <div class="border-t border-white/10 pt-4 mt-4">
-                <h3 class="text-md font-semibold mb-2">Delete Account</h3>
-                <p class="text-sm opacity-75 mb-4">Once you delete your account, there is no going back. Please be certain.</p>
 
-                <button type="button" class="text-red-400 hover:text-white border border-red-400 hover:bg-red-500/50 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center transition-all duration-300">
-                    Delete Account
-                </button>
-            </div>
         </div>
     </div>
 </div>

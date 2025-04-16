@@ -147,6 +147,38 @@ $isLoggedIn = isset($_SESSION['user_id']);
             min-height: 100vh;
             color: #e2e8f0;
         }
+
+        /* Dark dropdowns */
+        select, select option, .dropdown-menu, .dropdown-item {
+            background-color: #1a202c !important;
+            color: white !important;
+            border-color: rgba(255, 255, 255, 0.2) !important;
+        }
+
+        select:focus {
+            border-color: var(--color-accent) !important;
+            ring-color: var(--color-accent) !important;
+        }
+
+        /* Fix for language selector and chatbot dropdowns */
+        #language-selector, #chatbot-language {
+            background-color: rgba(26, 32, 44, 0.9) !important;
+            color: white !important;
+        }
+
+        /* Force dark background for all select elements */
+        select {
+            background-color: #1a202c !important;
+            color: white !important;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3E%3C/svg%3E");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
     </style>
 </head>
 <body class="font-sans">

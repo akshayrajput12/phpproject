@@ -32,20 +32,20 @@ echo json_encode($response);
 
 /**
  * Get response from Gemini API
- * 
+ *
  * @param string $message User message
  * @param string $language Language code (en, hi, pa)
  * @return array Response data
  */
 function getChatbotResponse($message, $language) {
     $api_key = GEMINI_API_KEY;
-    
+
     // Prepare system prompt based on language
     $systemPrompt = getSystemPrompt($language);
-    
+
     // API endpoint
     $url = GEMINI_API_URL . "?key={$api_key}";
-    
+
     // Prepare request data
     $data = [
         "contents" => [
@@ -64,10 +64,10 @@ function getChatbotResponse($message, $language) {
             "maxOutputTokens" => 1024,
         ]
     ];
-    
+
     // Initialize cURL session
     $ch = curl_init($url);
-    
+
     // Set cURL options
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POST, true);
@@ -75,10 +75,10 @@ function getChatbotResponse($message, $language) {
     curl_setopt($ch, CURLOPT_HTTPHEADER, [
         'Content-Type: application/json'
     ]);
-    
+
     // Execute cURL request
     $response = curl_exec($ch);
-    
+
     // Check for errors
     if (curl_errno($ch)) {
         curl_close($ch);
@@ -87,26 +87,26 @@ function getChatbotResponse($message, $language) {
             'message' => 'Failed to connect to Gemini API: ' . curl_error($ch)
         ];
     }
-    
+
     // Close cURL session
     curl_close($ch);
-    
+
     // Decode JSON response
     $result = json_decode($response, true);
-    
+
     // Extract the text content from Gemini's response
     if (isset($result['candidates'][0]['content']['parts'][0]['text'])) {
         $text = $result['candidates'][0]['content']['parts'][0]['text'];
-        
+
         // Clean up the response
         $text = cleanResponse($text);
-        
+
         return [
             'status' => 'success',
             'response' => $text
         ];
     }
-    
+
     return [
         'status' => 'error',
         'message' => 'Invalid response from Gemini API',
@@ -116,7 +116,7 @@ function getChatbotResponse($message, $language) {
 
 /**
  * Get system prompt based on language
- * 
+ *
  * @param string $language Language code
  * @return string System prompt
  */
@@ -133,18 +133,18 @@ function getSystemPrompt($language) {
 
 /**
  * Clean up the response text
- * 
+ *
  * @param string $text Response text
  * @return string Cleaned response
  */
 function cleanResponse($text) {
     // Remove any "Assistant:" or similar prefixes
     $text = preg_replace('/^(Assistant|Farmer\'s Friend|किसान मित्र|ਕਿਸਾਨ ਮਿੱਤਰ):\s*/i', '', $text);
-    
+
     // Remove any markdown formatting
     $text = preg_replace('/\*\*(.*?)\*\*/', '$1', $text); // Bold
     $text = preg_replace('/\*(.*?)\*/', '$1', $text);     // Italic
-    
+
     return trim($text);
 }
 ?>
